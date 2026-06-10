@@ -16,6 +16,8 @@ export class Server {
 
   async start() {
     // * Middlewares
+    this.app.use(express.json()); //Any request to the server goes through this middleware that parse the response to a Json
+    this.app.use(express.urlencoded({ extended: true }));
 
     // * Public Folder
     this.app.use(express.static(this.options.public_path));
