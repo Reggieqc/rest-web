@@ -16,5 +16,11 @@ logs/*
 .vscode/
 .idea/
 
+
+# Database
+postgres/
+
 keys/
 HISTORIAL_COMMITS.md
+
+/src/generated/prisma
