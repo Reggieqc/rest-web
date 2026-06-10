@@ -3,17 +3,17 @@ const todos = [
   {
     id: 1,
     text: "Buy milk",
-    createdAt: new Date(),
+    completedAt: new Date(),
   },
   {
     id: 2,
     text: "Buy bread",
-    createdAt: null,
+    completedAt: null,
   },
   {
     id: 3,
     text: "Buy butterd",
-    createdAt: new Date(),
+    completedAt: new Date(),
   },
 ];
 
@@ -48,10 +48,53 @@ export class TodosController {
     const newTodo = {
       id: todos.length + 1,
       text,
-      createdAt: new Date(),
+      completedAt: new Date(),
     };
 
     todos.push(newTodo);
     return res.json(newTodo);
+  };
+
+  public updateTodo = (req: Request, res: Response) => {
+    if (!req.params.id) {
+      return;
+    }
+    if (isNaN(+req.params.id)) {
+      return res.status(400).json({ error: "Id argument is not a number" });
+    }
+    const id = +req.params.id;
+    const todo = todos.find((todo) => todo.id === id);
+    if (!todo) {
+      return res.status(404).json({ error: `TODO with id ${id} not found  ` });
+    }
+    const { text, completedAt } = req.body;
+    if (!text) {
+      return res.status(400).json({ error: "Text is required" });
+    }
+
+    todo.text = text || todo.text;
+
+    completedAt === "null"
+      ? (todo.completedAt = null)
+      : (todo.completedAt = new Date(completedAt || todo.completedAt));
+
+    return res.json(todo);
+  };
+
+  public deleteTodo = (req: Request, res: Response) => {
+    if (!req.params.id) {
+      return;
+    }
+    if (isNaN(+req.params.id)) {
+      return res.status(400).json({ error: "Id argument is not a number" });
+    }
+    const id = +req.params.id;
+    const todo = todos.find((todo) => todo.id === id);
+    if (!todo) {
+      return res.status(404).json({ error: `TODO with id ${id} not found  ` });
+    }
+
+    todos.splice(todos.indexOf(todo), 1);
+    return res.json(todo);
   };
 }
