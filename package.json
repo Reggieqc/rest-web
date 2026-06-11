@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/app.ts",
-    "build": "rimraf ./dist && tsc",
-    "start": "npm run build && node dist/app.js"
+    "build": "rimraf ./dist && tsc -p tsconfig.json",
+    "start": "node dist/app.js"
   },
   "keywords": [],
   "author": "",
