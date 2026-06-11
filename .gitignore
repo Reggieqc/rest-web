@@ -6,19 +6,10 @@ dist/
 *.log
 logs/*
 
-# Environments
-.env
-.env.local
-.env.test
-
-
-# IDEs / Editors
-.vscode/
-.idea/
-
-
-# Database
-/postgres/
 
 keys/
+.env
+
+/postgres
+
 HISTORIAL_COMMITS.md
