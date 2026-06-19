@@ -18,6 +18,8 @@ export class TodoEntity {
       if (isNaN(newCompletedAt.getTime())) {
         throw "CompletedAt is not a valid date";
       }
+    } else {
+      newCompletedAt = null;
     }
     return new TodoEntity(id, text, newCompletedAt);
   }

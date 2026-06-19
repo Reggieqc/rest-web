@@ -48,7 +48,7 @@ export class TodosController {
     new CreateTodo(this.todoRepository)
       .execute(createTodoDto!)
       .then((todo) => {
-        return res.json(todo);
+        return res.status(201).json(todo);
       })
       .catch((error) => {
         return res.status(400).json({ error });

@@ -5,7 +5,7 @@ export class CreateTodoDto {
     [key: string]: any;
   }): [string | undefined, CreateTodoDto | undefined] {
     const { text } = props;
-    if (!text) {
+    if (!text || text.lenght === 0) {
       return ["Text is required", undefined];
     }
     return [undefined, new CreateTodoDto(text)];
