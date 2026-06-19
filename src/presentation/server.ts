@@ -8,11 +8,12 @@ interface Options {
 }
 
 export class Server {
+  public serverListener: any;
   constructor(private readonly options: Options) {
     this.options = options;
   }
 
-  private app = express();
+  public readonly app = express();
 
   async start() {
     // * Middlewares
@@ -35,8 +36,12 @@ export class Server {
     });
 
     // console.log("Server started");
-    this.app.listen(this.options.port, () => {
+    this.serverListener = this.app.listen(this.options.port, () => {
       console.log(`Server runnin on port ${this.options.port}`);
     });
+  }
+
+  public close() {
+    this.serverListener?.close();
   }
 }

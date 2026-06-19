@@ -13,3 +13,5 @@ keys/
 /postgres
 
 HISTORIAL_COMMITS.md
+
+/coverage
